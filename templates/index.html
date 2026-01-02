@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essay Evaluator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+
+<div class="main-wrapper">
+    
+    <header class="hero-section">
+        <h1>AI Essay Assessment</h1>
+        <p class="subtitle">Receive structured, editorial-grade feedback on your writing style, depth, and clarity.</p>
+    </header>
+
+    <div class="content-container">
+        
+        <section class="input-section">
+            <form method="POST">
+                <div class="textarea-wrapper">
+                    <textarea name="essay" placeholder="Begin writing or paste your essay here..." required spellcheck="false"></textarea>
+                </div>
+                <div class="action-bar">
+                    <button type="submit" class="primary-btn">
+                        <span>Evaluate Essay</span>
+                        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        {% if result %}
+        <div class="results-section">
+            <div class="divider">
+                <span>Analysis Report</span>
+            </div>
+
+            <div class="score-banner">
+                <div class="score-label">Overall Score</div>
+                <div class="score-value">{{ result.avg_score }}<span>/10</span></div>
+            </div>
+
+            <div class="grid-results">
+                <div class="card card-language">
+                    <h3>Language & Grammar</h3>
+                    <p>{{ result.language_feedback }}</p>
+                </div>
+
+                <div class="card card-analysis">
+                    <h3>Depth of Analysis</h3>
+                    <p>{{ result.analysis_feedback }}</p>
+                </div>
+
+                <div class="card card-clarity">
+                    <h3>Clarity of Thought</h3>
+                    <p>{{ result.clarity_feedback }}</p>
+                </div>
+
+                <div class="card card-overall">
+                    <h3>Comprehensive Feedback</h3>
+                    <p>{{ result.overall_feedback }}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+
+<footer class="footer">
+    <p>AI-Powered Assessment Tool</p>
+</footer>
+
+</body>
+</html>
